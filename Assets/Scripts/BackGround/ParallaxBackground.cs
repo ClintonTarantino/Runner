@@ -6,6 +6,7 @@ public class ParallaxBackground : MonoBehaviour {
     public GameObject referenceObject;
     public float elementSize;
     public float elementOffset;
+    public float speed;
 
     private List<GameObject> backGroundElements;
 
@@ -19,6 +20,7 @@ public class ParallaxBackground : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //Applying Infinte Background (Parallax in parallaxing)
 		foreach(GameObject backgroundElement in backGroundElements) {
           if(referenceObject.transform.position.x - backgroundElement.transform.position.x > elementOffset) {
                 backgroundElement.transform.position = new Vector3(
@@ -27,6 +29,11 @@ public class ParallaxBackground : MonoBehaviour {
                     backgroundElement.transform.position.z      
                 );
             }      
+        }
+        // Making background objects move
+        foreach(GameObject backgroundElement in backGroundElements)
+        {
+            backgroundElement.transform.position += Vector3.left * speed * Time.deltaTime;
         }
 	}
 }

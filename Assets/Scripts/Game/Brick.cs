@@ -8,7 +8,8 @@ public class Brick : MonoBehaviour {
     public bool hasCoin;
 
     void OnKill(){
-       
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+
         if (hasCoin) {
            GameObject coinObject = GameObject.Instantiate(coinPrefab);
             coinObject.transform.position = transform.position + new Vector3();
@@ -16,7 +17,8 @@ public class Brick : MonoBehaviour {
             Coin coin = coinObject.GetComponent<Coin>();
             coin.Vanish();
 
-            //GameObject.Find("Player").GetComponent<Player>().onCollectCoin();
+          player.onCollectCoin();
         }
+        player.OnDestroyBrick();
     }
 }
